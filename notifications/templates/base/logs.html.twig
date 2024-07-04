@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Test Application!{% endblock %}
+
+{% block body %}
+
+<main>
+    <div class="button-container">
+
+    </div>
+
+    <table id="singleColumnTable">
+        <tr>
+            <th>Logs</th>
+        </tr>
+            {% for log in logsData %}
+                {% if 'app.NOTICE: {{{' in log %}
+                    <tr>
+                        <td>{{ log }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+    </table>
+</main>
+{% endblock %}

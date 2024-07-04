@@ -5,8 +5,121 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            header {
+                background-color: #4CAF50;
+                color: white;
+                text-align: center;
+                padding: 1em 0;
+            }
+
+            main {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 80vh;
+            }
+
+            p {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                width: 300px;
+                gap: 10px;
+            }
+
+            label {
+                font-weight: bold;
+            }
+
+            input, textarea {
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            #submit {
+                padding: 10px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            #submit:hover {
+                background-color: #008000;
+            }
+
+            a {
+                padding: 10px;
+                background-color: #00BFFF;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                text-align: center;
+                text-decoration: none;
+            }
+
+            .button-container {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            a:hover {
+                background-color: #007FFF;
+            }
+
+            #logs {
+                padding: 10px;
+                background-color: #60a5fa;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 50%;
+                margin: 0 auto;
+            }
+
+            th, td {
+                border: 1px solid #ccc;
+                text-align: left;
+                padding: 8px;
+            }
+
+            th {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+        </style>
     </head>
     <body>
+        <header>
+            <h1>Welcome to My Test WebApp</h1>
+        </header>
+
         {% block body %}{% endblock %}
     </body>
 
