@@ -14,7 +14,7 @@
             <th>Logs</th>
         </tr>
             {% for log in logsData %}
-                {% if 'app.NOTICE: {{{' in log %}
+                {% if 'app.ERROR: {{{' in log %}
                     <tr>
                         <td>{{ log }}</td>
                     </tr>

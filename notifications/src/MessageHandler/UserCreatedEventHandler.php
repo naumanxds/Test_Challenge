@@ -20,6 +20,6 @@ class UserCreatedEventHandler
     {
         $logData = sprintf("{{{ User created: %s %s <%s> }}}", $event->getFirstName(), $event->getLastName(), $event->getEmail());
         dump($logData);
-        $this->logger->log('NOTICE', $logData);
+        $this->logger->error($logData);
     }
 }
