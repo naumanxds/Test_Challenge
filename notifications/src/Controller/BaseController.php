@@ -30,4 +30,10 @@ class BaseController extends AbstractController
 
         return $this->render('base/logs.html.twig', [ 'logsData' => $logsData ]);
     }
+
+    #[Route('/readme', name: 'readme')]
+    public function readMe(): Response
+    {
+        return $this->render('base/readme.html.twig');
+    }
 }

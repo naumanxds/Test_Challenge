@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Test Application!{% endblock %}
+
+{% block body %}
+
+<main>
+    <div class="button-container">
+
+    </div>
+
+    <table id="singleColumnTable">
+        <tr>
+            <th>Development Process</th>
+        </tr>
+        <tr>
+            <td>Step 1 > Setup two folders for each micro service users and notifications</td>
+        </tr>
+
+        <tr>
+            <td>Step 2 > Install messenger bundle in both since its needed for Queue</td>
+        </tr>
+        <tr>
+            <td>Step 3 > Setup Database connection and execute the migrations in both services</td>
+        </tr>
+        <tr>
+            <td>Step 4 > Create User entity in users microservice</td>
+        </tr>
+        <tr>
+            <td>Step 5 > Create a controller and a post api /users in users microservice</td>
+        </tr>
+        <tr>
+            <td>Step 6 > Check if the API is working via Postman</td>
+        </tr>
+        <tr>
+            <td>Step 7 > Write a User Event to dispatch an event in the queue. when a user is created in the users microservice.</td>
+        </tr>
+        <tr>
+            <td>Step 8 > Make a form in the notifications microservice for users</td>
+        </tr>
+        <tr>
+            <td>Step 9 > Install bundle to handle CORS issue in the users microservice when submitting the form from notifications microservice</td>
+        </tr>
+        <tr>
+            <td>Step 10 > Write consumer in notifications microservice for consuming the message queue and logging the message</td>
+        </tr>
+        <tr>
+            <td>Step 11 > Make a route and a page for displaying logs</td>
+        </tr>
+        <tr>
+            <td>Step 12 > Adding a unit test in users microservice</td>
+        </tr>
+    </table>
+
+    <table id="singleColumnTable">
+        <tr>
+            <th>Issues faced while Development</th>
+        </tr>
+        <tr>
+            <td>1 > Cors Issues which had to be fixed because users microservice was rejecting the api request from notifications microservice</td>
+        </tr>
+        <tr>
+            <td>2 > By Default the messenger bundle was using doctirne however I had to use rabbitmq in order to allow the single queue to be accessed in both the microservices.</td>
+        </tr>
+        <tr>
+            <td>3 > For displaying the error logs i had to access the file and the route to the file was an issue so I declared a parameter in services.yaml and used that</td>
+        </tr>
+        <tr>
+            <td>4 > When tring to write the consumer in the notifications service we need to mention the producer in it. but since its a microservice architecture and the producer is in different service we cant access it. So I had to redeclare the producer in notifications microservice</td>
+        </tr>
+    </table>
+</main>
+{% endblock %}
