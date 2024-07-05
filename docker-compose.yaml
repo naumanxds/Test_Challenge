@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  notifications:
+    build:
+      context: ./notifications
+    container_name: nauman919_notifications
+    ports:
+      - "8001:9000"
+    depends_on:
+      - rabbitmq
+      - postgres
+    environment:
+      - DATABASE_URL=pgsql://postgres:adminadmin@postgres:5432/symfony_notifications?serverVersion=16&charset=utf8
+      - MESSENGER_TRANSPORT_DSN=amqp://guest:guest@rabbitmq:5672/%2f/messages
+    networks:
+      - nauman919-app-network
+    volumes:
+      - ./notifications:/var/www
+    command: ["php-fpm"]
+
+  users:
+    build:
+      context: ./users
+    container_name: nauman919_users
+    ports:
+      - "8000:9000"
+    depends_on:
+      - rabbitmq
+      - postgres
+    environment:
+      - DATABASE_URL=pgsql://postgres:adminadmin@postgres:5432/symfony_users?serverVersion=16&charset=utf8
+      - MESSENGER_TRANSPORT_DSN=amqp://guest:guest@rabbitmq:5672/%2f/messages
+    networks:
+      - nauman919-app-network
+    volumes:
+      - ./users:/var/www
+    command: ["php-fpm"]
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: nauman919_rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - nauman919-app-network
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+
+  postgres:
+    image: postgres:14
+    container_name: nauman919_postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: symfony_app
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: adminadmin
+    networks:
+      - nauman919-app-network
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+networks:
+  nauman919-app-network:
+    driver: bridge
+
+volumes:
+  rabbitmq-data:
+    driver: local
+  postgres-data:
+    driver: local
