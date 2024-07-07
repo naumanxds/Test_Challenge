@@ -11,8 +11,15 @@ services:
       - rabbitmq
       - postgres
     environment:
-      - DATABASE_URL=pgsql://postgres:adminadmin@postgres:5432/symfony_notifications?serverVersion=16&charset=utf8
+      - DATABASE_URL=postgresql://postgres:adminadmin@postgres:5432/nauman919_notifications_db?serverVersion=16&charset=utf8
       - MESSENGER_TRANSPORT_DSN=amqp://guest:guest@rabbitmq:5672/%2f/messages
+    command: |
+      bash -c "sleep 10 &&
+              php bin/console doctrine:database:create &&
+               php bin/console doctrine:migrations:migrate &&
+               php -S 0.0.0.0:9000 -t public"
+    networks:
+      - nauman919_network
 
   users:
     build:
@@ -24,8 +31,15 @@ services:
       - rabbitmq
       - postgres
     environment:
-      - DATABASE_URL=pgsql://postgres:adminadmin@postgres:5432/symfony_users?serverVersion=16&charset=utf8
+      - DATABASE_URL=postgresql://postgres:adminadmin@postgres:5432/nauman919_users_db?serverVersion=16&charset=utf8
       - MESSENGER_TRANSPORT_DSN=amqp://guest:guest@rabbitmq:5672/%2f/messages
+    command: |
+      bash -c "sleep 10 &&
+              php bin/console doctrine:database:create &&
+               php bin/console doctrine:migrations:migrate &&
+               php -S 0.0.0.0:9000 -t public"
+    networks:
+      - nauman919_network
 
   rabbitmq:
     image: rabbitmq:3-management
@@ -33,6 +47,8 @@ services:
     ports:
       - "5673:5672"
       - "15673:15672"
+    networks:
+      - nauman919_network
 
   postgres:
     image: postgres:14
@@ -43,3 +59,9 @@ services:
       POSTGRES_DB: symfony_app
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: adminadmin
+    networks:
+      - nauman919_network
+
+networks:
+  nauman919_network:
+    driver: bridge
