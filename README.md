@@ -10,14 +10,14 @@ Here is a short demo video of working applicaton [loom_video](https://www.loom.c
 
 ```bash
 .
-├── docker-compose.yml
+├── docker-compose.yaml
 ├── notifications
 │   ├── Dockerfile
 │   └── (other application files)
 ├── users
 │   ├── Dockerfile
 │   └── (other application files)
-└── www.conf
+└── README.md
 ```
 
 ## 1 Installation Using Docker
@@ -27,39 +27,37 @@ Here is a short demo video of working applicaton [loom_video](https://www.loom.c
 Following are the porject dependencies for this method to work.
 Before you begin, ensure you have the following installed on your machine:
 
- - Docker: Installation Guide
- - Docker Compose: Installation Guide
- - Make sure that in your system these ports are not used by anyother applicaton in order to avoid conflict `8000` `8001` `5432` `5672` `15672`
+ - Docker
+ - Docker Compose
+ - Make sure that in your system these ports are not used by anyother applicaton in order to avoid conflict `8000` `8001` `5433` `5673` `15673`
 
 ### 1.2 Post Installation what you will have
 
- - Network by the name of `test_challenge_nauman919-app-network`
- - Volume by the name of `test_challenge_postgres-data` and `test_challenge_rabbitmq-data`
- - Containers by the name of `nauman919_notifications` , `nauman919_users` , `nauman919_rabbitmq` , `nauman919_postgres`
+ - Network by the name of `test_challenge_nauman919_network` to verify use the command  `docker network ls`
+
+ - Containers by the name of `nauman919_notifications` , `nauman919_users` , `nauman919_rabbitmq` , `nauman919_postgres` to verify use command `docker container ls -a`
+
+ - Images by the name of `test_challenge-notifications` , `test_challenge-users` , `postgres` , `rabbitmq` to verify use the command `docker image ls -a`
 
 ### 1.3 Installation Steps
 
-**Step 1:** Clone the Repository
+**Step 1:** Open up a terminal and Clone the Repository
 
 ```sh
  git clone git@github.com:naumanxds/Test_Challenge.git
+
  # OR
- https://github.com/naumanxds/Test_Challenge.git
+
+ git clone https://github.com/naumanxds/Test_Challenge.git
 ```
 
 **Step 2:** Build and start the containers using Docker Compose:
 
 ```sh
- docker-compose up --build -d
+ docker-compose up --build
 ```
 
-**Step 3:** Check Running Containers
-
-```sh
- docker-compose ps
-```
-
-**Step 4:** Run the Consumer
+**Step 3:** Run the Consumer
 
 Once you have verified the installation we need to run our consumer in the notifications service for this `Open a new Terminal` and follow below steps
 
@@ -69,13 +67,34 @@ Once you have verified the installation we need to run our consumer in the notif
  # Then run
 
  ./bin/console messenger:consume
+
+ # DO NOT CLOSE THE TERMINAL
 ```
 
-**Step 5:** Accessing the Services
+**Step 4:** Accessing the Services
 
- - Open your browser and goto [http://localhost:8001]() you will see a user create form.
- - Open your browser and goto [http://localhost:15672]() use username: `guest` and password: `guest` to access te RabbitMq Dashboard.
+ - Open your browser and goto [http://localhost:8001](http://localhost:8001) you will see a user create form.
+ - Open your browser and goto [http://localhost:15673](http://localhost:15673) use username: `guest` and password: `guest` to access te RabbitMq Dashboard.
 
+
+**Step 5:** `IF` you want to verify data in database follow the follwing
+
+```
+ psql -h localhost -p 5433 -d nauman919_users_db -U postgres
+```
+
+It will ask for Password which is **adminadmin** Copy and paste it as it is in the terminal and hit enter. After that do following
+
+```
+
+ \x
+
+ # once you paste \x and hit enter make sure it says "Expanded display is on."
+
+ # Hit enter and the paste the below query and finally hit enter again.
+
+ SELECT * FROM "user";
+```
 
 ### 1.4  Troubleshooting
 
@@ -86,6 +105,7 @@ Incase if the instllation is not done properly make sure that you have vendor fo
  docker exec -it nauman919_users bash
 
  # Then check if vendor folder exists or not.
+
  # If not run the following command
 
  composer install
@@ -96,6 +116,7 @@ Incase if the instllation is not done properly make sure that you have vendor fo
  docker exec -it nauman919_notifications bash
 
  # Then check if vendor folder exists or not.
+
  # If not run the following command
 
  composer install
@@ -121,7 +142,9 @@ Before you begin, ensure you have the following installed on your machine:
 
 ```sh
  git clone git@github.com:naumanxds/Test_Challenge.git
+
  # OR
+
  https://github.com/naumanxds/Test_Challenge.git
 ```
 
@@ -147,6 +170,8 @@ CORS_ALLOW_ORIGIN='^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$'
 - run the following command
 
 ```sh
+ # First Run
+
  composer install
 
  # Then
@@ -190,6 +215,8 @@ MESSENGER_TRANSPORT_DSN=amqp://guest:guest@localhost:5672/%2f/messages
 - run the following command
 
 ```sh
+ # First Run
+
  composer install
 
  # Then
