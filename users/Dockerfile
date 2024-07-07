@@ -52,4 +52,4 @@ COPY --chown=www-data:www-data . /var/www
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
-CMD ["php", "-S", "127.0.0.1:9000", "-t", "public"]
+CMD ["php", "-S", "0.0.0.0:9000", "-t", "public"]
