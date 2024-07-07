@@ -2,9 +2,9 @@
 
 This project consists of two microservices, `notifications` and `users`, both developed in Symfony, along with a RabbitMQ message broker and a PostgreSQL database. This README provides you with two installation metods first one is using docker and second one is via simple lamp stack.
 
-## Project Wroking Demo
+## Project Video Working Demo
 
-Here is a short demo video of working applicaton [loom_video](https://www.loom.com/share/5e819d9f959a458398708f979a0affeb?sid=6152c274-f433-42db-a55c-dbae0828b3e2)
+Here is a short demo video of installation and working application [loom_video](https://www.loom.com/share/6e7f8fd8e6554da8a456e5de115961f1?sid=ed0e76b1-fad4-48c9-909c-e6e3360cb755)
 
 ## Directory Structure.
 
