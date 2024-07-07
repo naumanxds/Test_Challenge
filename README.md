@@ -24,12 +24,13 @@ Here is a short demo video of installation and working application [loom_video](
 
 ### 1.1 Prerequisites
 
-Following are the porject dependencies for this method to work.
+Following are the project dependencies for this method to work.
 Before you begin, ensure you have the following installed on your machine:
 
  - Docker
  - Docker Compose
- - Make sure that in your system these ports are not used by anyother applicaton in order to avoid conflict `8000` `8001` `5433` `5673` `15673`
+ - Good Internet Connection
+ - Make sure that in your system these ports are not used by any other application in order to avoid conflict `8000` `8001` `5433` `5673` `15673`
 
 ### 1.2 Post Installation what you will have
 
@@ -77,7 +78,7 @@ Once you have verified the installation we need to run our consumer in the notif
  - Open your browser and goto [http://localhost:15673](http://localhost:15673) use username: `guest` and password: `guest` to access te RabbitMq Dashboard.
 
 
-**Step 5:** `IF` you want to verify data in database follow the follwing
+**Step 5:** `IF` you want to verify data in database follow the following
 
 ```
  psql -h localhost -p 5433 -d nauman919_users_db -U postgres
@@ -98,7 +99,7 @@ It will ask for Password which is **adminadmin** Copy and paste it as it is in t
 
 ### 1.4  Troubleshooting
 
-Incase if the instllation is not done properly make sure that you have vendor folder created properly in your container. To do that follow the following steps
+Incase if the installation is not done properly make sure that you have vendor folder created properly in your container. To do that follow the following steps
 
  - For Users service
 ```sh
@@ -126,7 +127,7 @@ Incase if the instllation is not done properly make sure that you have vendor fo
 
 ### 2.1 Prerequisites
 
-Following are the porject dependencies for this method to work.
+Following are the project dependencies for this method to work.
 Before you begin, ensure you have the following installed on your machine:
 
  - Apache installed
@@ -134,7 +135,7 @@ Before you begin, ensure you have the following installed on your machine:
  - Postgres Sql installed
  - Rabbitmq installed.
  - composer installed
- - Make sure that in your system these ports are not used by anyother applicaton in order to avoid conflict `8000` `8001`
+ - Make sure that in your system these ports are not used by any other application in order to avoid conflict `8000` `8001`
 
 ### 1.3 Installation Steps
 
