@@ -4,13 +4,15 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\SequenceGenerator;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 class User
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
+    #[ORM\GeneratedValue(strategy: "SEQUENCE")]
+    #[SequenceGenerator(sequenceName: 'user_id_seq', initialValue: 1, allocationSize: 10)]
     #[ORM\Column]
     private ?int $id = null;
 

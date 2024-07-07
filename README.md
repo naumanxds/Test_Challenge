@@ -97,7 +97,20 @@ It will ask for Password which is **adminadmin** Copy and paste it as it is in t
  SELECT * FROM "user";
 ```
 
-### 1.4  Troubleshooting
+### 1.4  Running a Test in Users microservice
+
+In order to run unit test in `Users` microservice open a new terminal and run the following commands
+
+```
+ docker exec -it nauman919_users bash
+
+ # Then
+
+ php bin/phpunit
+```
+
+
+### 1.5  Troubleshooting
 
 Incase if the installation is not done properly make sure that you have vendor folder created properly in your container. To do that follow the following steps
 
